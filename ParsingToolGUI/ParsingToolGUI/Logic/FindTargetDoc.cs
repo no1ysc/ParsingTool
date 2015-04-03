@@ -94,13 +94,15 @@ namespace ParsingToolGUI.Logic
                     // Copy to des.
                     copyFileToResultDir(item);
                     log.WriteLine(workingCount + "번째 파일 복사.");
+                    log.Flush();
                 }
                 else
                 {
                     log.WriteLine(workingCount + "번째 파일 패스.");
+                    log.Flush();
                 }
-
-                this.ReportProgress( (int) ((double)totalTargetDocCount / (double)workingCount) * 100 );
+                int percent = (int)((double)workingCount / (double)totalTargetDocCount) * 100;
+                this.ReportProgress(percent);
             }
         }
 
