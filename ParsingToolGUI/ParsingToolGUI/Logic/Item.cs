@@ -14,6 +14,7 @@ namespace ParsingToolGUI.Logic
         public string 대;        // 몇대
         public string 회의종류;     // 회의종류 (본회의, 특임위)
         public string 회의종류하위; // (본회의 등을 제외한 특임위 상임위 등은 하위항목이 있음., 평소에는 없는걸로!)
+        public string 날짜;
         public string 차;            // 몇차
         public string 안건들;           // 지금은 아마 안쓸듯?
 

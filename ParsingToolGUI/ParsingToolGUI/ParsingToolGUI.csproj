@@ -73,6 +73,7 @@
     <Compile Include="Logic\FindTargetDoc.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Logic\ExtractItem.cs" />
     <Compile Include="Logic\Item.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
