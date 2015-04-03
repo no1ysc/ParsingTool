@@ -1,8 +1,108 @@
-﻿<Window x:Class="ParsingToolGUI.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ParsingToolGUI.MainWindow"
+        Title="MainWindow" Height="516" Width="720">
     <Grid>
-        
+        <Grid Background="White">
+            <Border Margin="37,37,608,393" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="대" VerticalAlignment="Top"/>
+                    <TextBox x:Name="대" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
+                </Grid>
+            </Border>
+            <Border Margin="156,25,370,381" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="회의종류" VerticalAlignment="Top"/>
+                    <TextBox x:Name="회의종류" HorizontalAlignment="Left" Height="23" Margin="0,21,-123,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+                </Grid>
+            </Border>
+            <Border Margin="37,93,478,313" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="종류하위" VerticalAlignment="Top"/>
+                    <TextBox x:Name="종류하위" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+                </Grid>
+            </Border>
+            <Border Margin="302,93,349,313" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="차" VerticalAlignment="Top"/>
+                    <TextBox x:Name="차" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
+                </Grid>
+            </Border>
+            <Border Margin="37,153,478,253" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="안건들" VerticalAlignment="Top"/>
+                    <TextBox x:Name="안건들" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+                </Grid>
+            </Border>
+            <Border Margin="37,218,478,188" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="발언자직책" VerticalAlignment="Top"/>
+                    <TextBox x:Name="직책" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+                </Grid>
+            </Border>
+            <Border Margin="254,218,261,188" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="발언자" VerticalAlignment="Top"/>
+                    <TextBox x:Name="발언자" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+                </Grid>
+            </Border>
+            <Border Margin="37,275,40,75" Height="115">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="발언내용" VerticalAlignment="Top"/>
+                    <TextBox x:Name="발언내용" HorizontalAlignment="Left" Height="78" Margin="0,21,-435,-55" TextWrapping="Wrap" VerticalAlignment="Top" Width="632"/>
+                </Grid>
+            </Border>
+            <Border Margin="37,387,478,19" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="액션" VerticalAlignment="Top"/>
+                    <TextBox x:Name="액션" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+                </Grid>
+            </Border>
+            <Border Margin="254,387,261,19" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="시간" VerticalAlignment="Top"/>
+                    <TextBox x:Name="시간" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+                </Grid>
+            </Border>
+            <Border Margin="538,387,113,19" Height="56">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="순서" VerticalAlignment="Top"/>
+                    <TextBox x:Name="순서" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
+                </Grid>
+            </Border>
+            <Button Content="대상문서선정" HorizontalAlignment="Left" Margin="538,242.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click_2">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FF72F1A0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="넣기" HorizontalAlignment="Left" Margin="538,37.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FF3F69D8" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="현재항목JSON보기" HorizontalAlignment="Left" Margin="538,138.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click_1">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FFAE6924" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <ProgressBar Name="progressBar" HorizontalAlignment="Left" Height="10" Margin="10,470,0,0" VerticalAlignment="Top" Width="692" Visibility="Hidden"/>
+            <!--대-->
+        </Grid>
     </Grid>
 </Window>
