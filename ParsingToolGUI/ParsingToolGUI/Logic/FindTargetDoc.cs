@@ -1,5 +1,5 @@
-﻿using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
+﻿using org.apache.pdfbox.pdmodel;
+using org.apache.pdfbox.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,6 +46,14 @@ namespace ParsingToolGUI.Logic
         "무상\n 급식",
         "무상 \n급식",
         "무상 급\n식",
+        "무\r\n상급식",
+        "무상\r\n급식",
+        "무상급\r\n식",
+        "무상 급식",
+        "무\r\n상 급식",
+        "무상\r\n 급식",
+        "무상 \r\n급식",
+        "무상 급\r\n식",
         };
 
 
@@ -143,14 +151,29 @@ namespace ParsingToolGUI.Logic
 
         private string getRawText(string pdfFilePath)
         {
-            PdfReader reader = new PdfReader(pdfFilePath);
+            PDDocument pdfFile = PDDocument.load(pdfFilePath);
+            PDFTextStripper stripper = new PDFTextStripper();
 
-            StringWriter output = new StringWriter();
+            return stripper.getText(pdfFile);
 
-            for (int i = 1; i <= reader.NumberOfPages; i++)
-                output.WriteLine(PdfTextExtractor.GetTextFromPage(reader, i, new SimpleTextExtractionStrategy()));
+            //StringWriter output = new StringWriter();
 
-            return output.ToString();
+            //for (int i = 1; i <= reader.NumberOfPages; i++)
+            //{
+            //    string pageText = PdfTextExtractor.GetTextFromPage(reader, i, new SimpleTextExtractionStrategy());
+            //    output.WriteLine(pageText);
+
+            //    foreach (string word in checkWord)
+            //    {
+            //        if (pageText.Contains(word))
+            //        {
+            //            Console.Out.WriteLine("걸림.");
+            //        }
+            //    }
+            //}
+                
+
+            //return output.ToString();
         }
 
         private void copyFileToResultDir(ResultSet item)
