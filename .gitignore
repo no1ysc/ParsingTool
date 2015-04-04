@@ -1,3 +1,5 @@
 /ParsingToolGUI/ParsingToolGUI/obj
 /ParsingToolGUI/ParsingToolGUI/bin
 /ParsingToolGUI/*.suo
+/ParsingToolGUI/ForTest/bin
+/ParsingToolGUI/ForTest/obj

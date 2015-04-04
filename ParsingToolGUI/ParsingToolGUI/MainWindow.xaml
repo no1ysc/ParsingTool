@@ -17,6 +17,12 @@
                     <TextBox x:Name="회의종류" HorizontalAlignment="Left" Height="23" Margin="0,21,-123,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
                 </Grid>
             </Border>
+            <Border Margin="347,37,179,393" Height="56">
+            	<Grid>
+            		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="날짜" VerticalAlignment="Top"/>
+            		<TextBox x:Name="날짜" HorizontalAlignment="Left" Height="23" Margin="0,21,-123,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+            	</Grid>
+            </Border>
             <Border Margin="37,93,478,313" Height="56">
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="종류하위" VerticalAlignment="Top"/>
@@ -50,7 +56,7 @@
             <Border Margin="37,275,40,75" Height="115">
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="발언내용" VerticalAlignment="Top"/>
-                    <TextBox x:Name="발언내용" HorizontalAlignment="Left" Height="78" Margin="0,21,-435,-55" TextWrapping="Wrap" VerticalAlignment="Top" Width="632"/>
+                    <TextBox x:Name="발언내용" HorizontalAlignment="Left" Height="78" Margin="0,21,-435,-55" TextWrapping="Wrap" VerticalAlignment="Top" Width="632" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True"/>
                 </Grid>
             </Border>
             <Border Margin="37,387,478,19" Height="56">
@@ -102,6 +108,26 @@
                 </Button.Background>
             </Button>
             <ProgressBar Name="progressBar" HorizontalAlignment="Left" Height="10" Margin="10,470,0,0" VerticalAlignment="Top" Width="692" Visibility="Hidden"/>
+            <Button Content="클립보드 붙이기" HorizontalAlignment="Left" Margin="279,184,0,0" VerticalAlignment="Top" Width="104" Height="26.96" Click="Button_Click_4">
+            	<Button.Background>
+            		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+            			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+            			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+            			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+            			<GradientStop Color="#FFA962FF" Offset="1"/>
+            		</LinearGradientBrush>
+            	</Button.Background>
+            </Button>
+            <Button Content="리셋" HorizontalAlignment="Left" Margin="616,419,0,0" VerticalAlignment="Top" Width="56" Click="Button_Click_5">
+            	<Button.Background>
+            		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+            			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+            			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+            			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+            			<GradientStop Color="#FF22645B" Offset="1"/>
+            		</LinearGradientBrush>
+            	</Button.Background>
+            </Button>
             <!--대-->
         </Grid>
     </Grid>

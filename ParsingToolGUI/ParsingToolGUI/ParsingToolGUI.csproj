@@ -133,6 +133,10 @@
     <Reference Include="pdfbox-1.8.7">
       <HintPath>lib\pdfbox-1.8.7.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -163,7 +167,9 @@
     <Compile Include="Logic\FindTargetDoc.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Logic\ExtractItem.cs" />
     <Compile Include="Logic\Item.cs" />
+    <Compile Include="Logic\JsonConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
