@@ -23,9 +23,9 @@ namespace ParsingToolGUI
     public partial class MainWindow : Window
     {
         private string originPDFsDir = @"L:\Data\무상급식회의록\";
-        private string targetPDFsDir = @"L:\Data\무상급식회의록타켓";
+        private string targetPDFsDir = @"L:\Data\무상급식회의록타켓\";
 
-        private string outputJSONFilePath;
+        private string outputJSONFilePath = @"L:\Data\무상급식회의록타켓\JSON\";
 
         public MainWindow()
         {
