@@ -11,16 +11,22 @@
                     <TextBox x:Name="대" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
                 </Grid>
             </Border>
-            <Border Margin="156,25,370,381" Height="56">
+            <Border Margin="129,37,397,393" Height="56">
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="회의종류" VerticalAlignment="Top"/>
                     <TextBox x:Name="회의종류" HorizontalAlignment="Left" Height="23" Margin="0,21,-123,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
                 </Grid>
             </Border>
-            <Border Margin="347,37,179,393" Height="56">
+            <Border Margin="375,37,270,393" Height="56">
+            	<Grid>
+            		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="회" VerticalAlignment="Top"/>
+            		<TextBox x:Name="회" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
+            	</Grid>
+            </Border>
+            <Border Margin="347,105,179,325" Height="56">
             	<Grid>
             		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="날짜" VerticalAlignment="Top"/>
-            		<TextBox x:Name="날짜" HorizontalAlignment="Left" Height="23" Margin="0,21,-123,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+            		<TextBox x:Name="날짜" HorizontalAlignment="Left" Height="23" Margin="0,21,-123,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" TextChanged="날짜_TextChanged"/>
             	</Grid>
             </Border>
             <Border Margin="37,93,478,313" Height="56">
@@ -29,7 +35,7 @@
                     <TextBox x:Name="종류하위" HorizontalAlignment="Left" Height="23" Margin="0,21,-136,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
                 </Grid>
             </Border>
-            <Border Margin="302,93,349,313" Height="56">
+            <Border Margin="254,105,397,325" Height="56">
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="차" VerticalAlignment="Top"/>
                     <TextBox x:Name="차" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
@@ -77,7 +83,7 @@
                     <TextBox x:Name="순서" HorizontalAlignment="Left" Height="23" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
                 </Grid>
             </Border>
-            <Button Content="대상문서선정" HorizontalAlignment="Left" Margin="538,242.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click_2">
+            <Button Content="대상문서선정" HorizontalAlignment="Left" Margin="551,242.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click_2">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -87,7 +93,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="넣기" HorizontalAlignment="Left" Margin="538,37.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click">
+            <Button Content="넣기" HorizontalAlignment="Left" Margin="551,37.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -97,7 +103,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="현재항목JSON보기" HorizontalAlignment="Left" Margin="538,138.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click_1">
+            <Button Content="현재항목JSON보기" HorizontalAlignment="Left" Margin="551,138.44,0,0" VerticalAlignment="Top" Width="134" Height="28.96" Click="Button_Click_1">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -38,10 +39,10 @@ namespace ParsingToolGUI.Logic
         // check words
         private string[] checkWord = {
         "무상급식",
+        "무상 급식",
         "무\n상급식",
         "무상\n급식",
         "무상급\n식",
-        "무상 급식",
         "무\n상 급식",
         "무상\n 급식",
         "무상 \n급식",
@@ -49,7 +50,6 @@ namespace ParsingToolGUI.Logic
         "무\r\n상급식",
         "무상\r\n급식",
         "무상급\r\n식",
-        "무상 급식",
         "무\r\n상 급식",
         "무상\r\n 급식",
         "무상 \r\n급식",
@@ -61,6 +61,8 @@ namespace ParsingToolGUI.Logic
 
         private string rootPath;
         private string resultPath;
+        private StreamWriter log;
+        private StreamWriter wordCountDate;
 
         private MainWindow progressBarInWindow = null;
 
@@ -68,6 +70,9 @@ namespace ParsingToolGUI.Logic
         {
             this.rootPath = rootPath;
             this.resultPath = resultPath;
+
+            this.log = File.CreateText(Environment.CurrentDirectory + "\\Log.txt");
+            this.wordCountDate = File.CreateText(Environment.CurrentDirectory + "\\WordCountDate.csv");
 
             this.DoWork += new DoWorkEventHandler(work);
             this.RunWorkerCompleted += new RunWorkerCompletedEventHandler(completeWork);
@@ -77,8 +82,6 @@ namespace ParsingToolGUI.Logic
         {
             // 폴더들 탐색하여 대상들 가져옴.
             searchChildDirs(rootPath);
-
-            StreamWriter log = File.CreateText(Environment.CurrentDirectory + "\\Log.txt");
 
             int totalTargetDocCount = fileList.Count;
             int workingCount = 0;
@@ -92,26 +95,96 @@ namespace ParsingToolGUI.Logic
 
                 ResultSet item = fileList.Dequeue();
 
-                // PDF로부터 원문 가져옴.
-                // Getting rawText from PDF file.
-                string rawText = getRawText(item.FilePath + item.FileName);
+                //procContainWord(workingCount, item);
 
-                // Checking a target word
-                if (containWordsCheck(rawText))
-                {
-                    // Copy to des.
-                    copyFileToResultDir(item);
-                    log.WriteLine(workingCount + "번째 파일 복사.");
-                    log.Flush();
-                }
-                else
-                {
-                    log.WriteLine(workingCount + "번째 파일 패스.");
-                    log.Flush();
-                }
+                procContainWordCount(workingCount, item);
+                
                 int percent = (int)((double)workingCount / (double)totalTargetDocCount) * 100;
                 this.ReportProgress(percent);
             }
+        }
+
+        private void procContainWord(int workingCount, ResultSet item)
+        {
+            // PDF로부터 원문 가져옴.
+            // Getting rawText from PDF file.
+            string rawText = getRawText(item.FilePath + item.FileName);
+
+            // Checking a target word
+            if (containWordsCheck(rawText))
+            {
+                // Copy to des.
+                copyFileToResultDir(item);
+                log.WriteLine(workingCount + "번째 파일 복사.");
+                log.Flush();
+            }
+            else
+            {
+                log.WriteLine(workingCount + "번째 파일 패스.");
+                log.Flush();
+            }
+        }
+
+        private void procContainWordCount(int workingCount, ResultSet item)
+        {
+            // PDF로부터 원문 가져옴.
+            // Getting rawText from PDF file.
+            string rawText = getRawText(item.FilePath + item.FileName);
+            
+            // Checking a target word
+            int containsWordCount = getContainsWordsCount(rawText);
+            if (containsWordCount > 0)
+            {
+                string date = getDateFromDoc(item.FilePath + item.FileName);
+                wordCountDate.WriteLine(date + "\t" + containsWordCount.ToString() + "\t" + item.FilePath + item.FileName);
+                wordCountDate.Flush();
+
+                // Copy to des.
+                copyFileToResultDir(item);
+                log.WriteLine(workingCount + "번째 파일 복사.");
+                log.Flush();
+            }
+            else
+            {
+                log.WriteLine(workingCount + "번째 파일 패스.");
+                log.Flush();
+            }
+        }
+
+        private string getDateFromDoc(string pdfFilePath)
+        {
+            PDDocument pdfFile = PDDocument.load(pdfFilePath);
+            PDFTextStripper stripper = new PDFTextStripper();
+
+            stripper.setStartPage(1);
+            stripper.setEndPage(1);
+
+            string firstPageText = stripper.getText(pdfFile);
+
+            Regex r = new Regex(@"(19|20)\d{2}(년|年)([1-9]|1[012])(월|月)([1-9]|[12][0-9]|3[0-1])(일|日)");
+            //Regex r = new Regex(@"(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])");
+            Match m = r.Match(firstPageText);
+
+            if (m.Success)
+            {
+                return m.Value;
+            }
+
+            return "";
+        }
+
+        private int getContainsWordsCount(string rawText)
+        {
+            int count = 0;
+
+            foreach (string word in checkWord)
+            {
+                Regex r = new Regex(word);
+                MatchCollection mc = r.Matches(rawText);
+                count += mc.Count;
+            }
+
+            return count;
         }
 
         /// <summary>
@@ -154,26 +227,18 @@ namespace ParsingToolGUI.Logic
             PDDocument pdfFile = PDDocument.load(pdfFilePath);
             PDFTextStripper stripper = new PDFTextStripper();
 
-            return stripper.getText(pdfFile);
+            //int pageCount = pdfFile.getNumberOfPages();
+            //StringBuilder rawText = new StringBuilder();
 
-            //StringWriter output = new StringWriter();
-
-            //for (int i = 1; i <= reader.NumberOfPages; i++)
+            //for (int index = 0; index < pageCount; index++)
             //{
-            //    string pageText = PdfTextExtractor.GetTextFromPage(reader, i, new SimpleTextExtractionStrategy());
-            //    output.WriteLine(pageText);
+            //    stripper.setStartPage(index);
+            //    stripper.setEndPage(index);
 
-            //    foreach (string word in checkWord)
-            //    {
-            //        if (pageText.Contains(word))
-            //        {
-            //            Console.Out.WriteLine("걸림.");
-            //        }
-            //    }
+            //    rawText.Append(stripper.getText(pdfFile));
             //}
-                
 
-            //return output.ToString();
+            return stripper.getText(pdfFile);
         }
 
         private void copyFileToResultDir(ResultSet item)

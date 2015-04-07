@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,9 @@ namespace ParsingToolGUI
     {
         private string originPDFsDir = @"L:\Data\무상급식회의록\";
         //private string originPDFsDir = @"D:\임시작업\무상테스트데이터\";
-        private string targetPDFsDir = @"L:\Data\무상급식회의록타켓\";
+        private string targetPDFsDir = @"L:\Data\무상급식회의록타켓2\";
 
-        private string outputJSONFilePath = @"L:\Data\무상급식회의록타켓\JSON\";
+        private string outputJSONFilePath = @"L:\Data\무상급식회의록타켓\JSON\output.json";
 
         public MainWindow()
         {
@@ -56,7 +57,19 @@ namespace ParsingToolGUI
         // 넣기 버튼 클릭
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ;
+            Item item = textBox2Item();
+            string json = new JsonConverter<Item>().Object2Json(item);
+            StreamWriter writer = File.AppendText(outputJSONFilePath);
+
+            writer.WriteLine(json + ",");
+            writer.Flush();
+            writer.Close();
+
+            this.직책.Text = "";
+            this.발언자.Text = "";
+            this.발언내용.Text = "";
+            this.액션.Text = "";
+            this.시간.Text = "";
         }
 
         // JSON 보기 클릭
@@ -88,7 +101,7 @@ namespace ParsingToolGUI
             }
             else
             {
-                int countValue = Int32.Parse(this.순서.Text);
+                int countValue = Int32.Parse(this.순서.Text) + 1;
                 this.순서.Text = countValue.ToString();
             }
         }
@@ -96,7 +109,20 @@ namespace ParsingToolGUI
         // 리셋
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
+            this.대.Text = "";
+            this.회의종류.Text = "";
+            this.날짜.Text = "";
+            this.종류하위.Text = "";
+            this.회.Text = "";
+            this.차.Text = "";
+            this.안건들.Text = "";
 
+            this.직책.Text = "";
+            this.발언자.Text = "";
+            this.발언내용.Text = "";
+            this.액션.Text = "";
+            this.시간.Text = "";
+            this.순서.Text = "0";
         }
 
         private void item2TextBox(Item inputedItem)
@@ -115,6 +141,7 @@ namespace ParsingToolGUI
             ret.회의종류 = this.회의종류.Text;
             ret.날짜 = this.날짜.Text;
             ret.회의종류하위 = this.종류하위.Text;
+            ret.회 = this.회.Text;
             ret.차 = this.차.Text;
             ret.안건들 = this.안건들.Text;
 
@@ -126,6 +153,11 @@ namespace ParsingToolGUI
             ret.순서 = this.순서.Text;
 
             return ret;           
+        }
+
+        private void 날짜_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.순서.Text = "0";
         }
 
     }

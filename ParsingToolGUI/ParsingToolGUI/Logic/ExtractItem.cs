@@ -26,8 +26,17 @@ namespace ParsingToolGUI.Logic
             
             // 첫번째 라인에는 발언자직책, 발언자 가 들어옴. 공백으로 두개 구분.
             string[] 발언자직책사람 = lines[0].Split(' ');
-            직책 = 발언자직책사람[0];
-            발언자 = 발언자직책사람[1];
+            if (발언자직책사람[1].Equals("위원"))
+            {
+                직책 = 발언자직책사람[1];
+                발언자 = 발언자직책사람[0];
+            }
+            else
+            {
+                직책 = 발언자직책사람[0];
+                발언자 = 발언자직책사람[1];
+            }
+            
 
             // 두번째 라인 부터 내용이 들어있을 것.
             StringBuilder content = new StringBuilder();
